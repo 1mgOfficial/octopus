@@ -67,6 +67,7 @@ module Octopus
 
         base.class_eval do
           class << self
+=begin
               alias_method :migrate_without_octopus, :migrate
               alias_method :migrate, :migrate_with_octopus
               
@@ -81,9 +82,11 @@ module Octopus
 
               alias_method :rollback_without_octopus, :rollback
               alias_method :rollback, :rollback_with_octopus
+=end
           end
         end
       end
+=begin
 
       base.send :alias_method, :run_without_octopus, :run
       base.send :alias_method, :run, :run_with_octopus
@@ -93,6 +96,7 @@ module Octopus
 
       base.send :alias_method, :migrations_without_octopus, :migrations
       base.send :alias_method, :migrations, :migrations_with_octopus
+=end
     end
     if Octopus.atleast_rails52?
       ### Post RAILS 5.2 Migration methods
